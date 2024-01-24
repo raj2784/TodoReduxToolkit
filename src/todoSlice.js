@@ -18,7 +18,11 @@ export const todoSlice = createSlice({
         id: nanoid(),
         text: action.payload,
       };
-      state.todos.push(todo);
+      if (action.payload) {
+        state.todos.push(todo);
+      } else {
+        alert("Please add some to do...");
+      }
     },
     removeTodo: (state, action) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
