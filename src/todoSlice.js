@@ -24,10 +24,21 @@ export const todoSlice = createSlice({
         alert("Please add some to do...");
       }
     },
+
     removeTodo: (state, action) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
-    updateTodo: (state, action) => {},
+
+    //update todo
+    updateTodo: (state, action) => {
+      const updateTodo = action.payload;
+      const existingTodo = state.todos.find(
+        (todo) => todo.id === updateTodo.id
+      );
+      if (existingTodo) {
+        existingTodo.text = updateTodo.text;
+      }
+    },
   },
 });
 
